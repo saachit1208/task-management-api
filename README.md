@@ -109,19 +109,6 @@ pytest --cov=app tests/
 - Database is cleaned up after tests complete
 - Each test runs with fresh data
 
-## Project Dependencies
-```
-Flask==3.0.0
-Flask-SQLAlchemy==3.1.1
-Flask-Marshmallow==0.15.0
-marshmallow-sqlalchemy==0.29.0
-Flask-CORS==4.0.0
-python-dotenv==1.0.0
-psycopg2-binary==2.9.9
-pytest==7.4.3
-pytest-cov==4.1.0
-```
-
 ## Development Notes
 
 ### Task Schema
