@@ -1,6 +1,6 @@
 # Task Management API
 
-A Flask REST API for managing tasks with PostgreSQL database.
+ REST APIs built in Flask or managing tasks with PostgreSQL database.
 
 ## Project Structure
 ```
