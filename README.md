@@ -66,13 +66,8 @@ CREATE DATABASE tasks_test_db;
 Create `.env` file:
 ```env
 DATABASE_URL=postgresql://postgres:your_password@localhost:5432/tasks_db
+TEST_DATABASE_URL = postgresql://postgres:your_password@localhost:5432/tasks_test_db
 ```
-
-For testing, database URL automatically switches to:
-```
-postgresql://postgres:your_password@localhost:5432/tasks_test_db
-```
-
 ## Running The Application
 
 ```bash
