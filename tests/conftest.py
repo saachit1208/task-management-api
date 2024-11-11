@@ -3,6 +3,7 @@ Test Configuration Module with session-level cleanup
 """
 
 import pytest
+import os
 from app import create_app
 from app.extensions import db
 from app.models.task import Task
@@ -10,11 +11,9 @@ from app.models.task import Task
 @pytest.fixture(scope='session')
 def app():
     """Create and configure Flask application for testing"""
-    test_db_url = "postgresql://postgres:postgres@localhost:5432/tasks_test_db"
+    test_db_url = os.getenv("TEST_DATABASE_URL")
     app = create_app(database_url=test_db_url)
     app.config['TESTING'] = True
-    
-    print(f"\n[DEBUG] Test Database URL: {app.config['SQLALCHEMY_DATABASE_URI']}")
     
     # Setup test database
     with app.app_context():
@@ -45,4 +44,9 @@ def init_database(app):
         db.session.add_all([task1, task2])
         db.session.commit()
         
-        yield db
+    yield db
+    # Cleanup after all tests are done
+    with app.app_context():
+        print("\n[DEBUG] Cleaning up test records...")
+        db.session.query(Task).delete()
+        db.session.commit()
