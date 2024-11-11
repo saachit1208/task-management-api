@@ -19,3 +19,4 @@ class Task(db.Model):
 
     def __repr__(self):
         return f'<Task {self.id}: {self.description[:20]}...>'
+    

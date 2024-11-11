@@ -25,7 +25,7 @@ def get_tasks():
         all_tasks = Task.query.order_by(Task.created_at.desc()).all()
         # Use marshmallow schema to serialize
         result = tasks_schema.dump(all_tasks)
-        return jsonify(result), HTTPStatus.OK
+        return result, HTTPStatus.OK
     except Exception as e:
         return jsonify({'error': str(e)}), HTTPStatus.INTERNAL_SERVER_ERROR
 
@@ -41,7 +41,7 @@ def create_task():
         db.session.commit()
         
         # Return serialized task
-        return jsonify(task_schema.dump(task)), HTTPStatus.CREATED
+        return task_schema.dump(task), HTTPStatus.CREATED
         
     except ValidationError as err:
         return jsonify({'error': err.messages}), HTTPStatus.BAD_REQUEST
